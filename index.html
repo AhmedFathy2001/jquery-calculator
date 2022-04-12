@@ -37,8 +37,8 @@
                 <button class="mdc-button package-selector">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label"
-                        style="display: flex; justify-content: space-between; width:100%"><span>Light Check</span> <svg
-                            class="" style="width: 25px;" viewBox="0 0 24 24" aria-hidden="true">
+                        style="display: flex; justify-content: space-between; width:100%"><span id="lightCheckBtn">Light
+                            Check</span> <svg class="" style="width: 25px;" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M7 10l5 5 5-5z"></path>
                         </svg></span>
                 </button>
@@ -48,17 +48,19 @@
         <div class="card-content">
             <hr>
 
-            <div class="price-details"><span>Our cost per check</span> <span>$8.70</span></div>
-            <div class="price-details"><span>Platform fee per check</span> <span>$4.76</span></div>
+            <div class="price-details"><span>Our cost per check</span> <span class="cost-per-check">$8.70</span></div>
+            <div class="price-details"><span>Platform fee per check</span> <span class="platform-fee">$7.29</span></div>
             <div class="price-details"><span>Total per check</span> <span class="total-per-check">$13.46</span></div>
-            <div class="price-details"><span>Checks per year</span> <span>x 36</span></div>
+            <div class="price-details"><span>Checks per year</span><span class="amount-of-checks">x 36</span></div>
             <hr style="margin: 8px 0;">
-            <div class="price-details total"><span>Total</span> <span>$484.69 /Year</span></div>
+            <div class="price-details total"><span>Total</span> <span class="total-price">$484.69 /Year</span></div>
             <div class="savings-box">
                 <div class="savings-content">
                     <div class="text-container">
-                        <p>Save 33%. Avg market price of this check is: $19.99</p>
-                        <p class="highlighted-text">You save $234.95 for 36 checks</p>
+                        <p>Save <span class="percentage-saved">21%</span>. Avg market price of this check is: <span
+                                class="check-price">$19.99</span></p>
+                        <p class="highlighted-text">You save <span class="amount-saved">$4.00</span> for <span
+                                class="amount-of-checks-saving">1</span> check(s)</p>
                     </div>
                     <div class="img"><img src="./SavingsIcon.png" alt="savings-img"></div>
                 </div>

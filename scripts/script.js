@@ -1,7 +1,35 @@
 $(document).ready(function () {
+  //Buttons used to swap between slider modes and pricing
+  const monthlyButton = document.querySelector(".monthly-button");
+  const yearlyButton = document.querySelector(".yearly-button");
+  const packageSelector = document.querySelector(".package-selector");
+  const buyButton = document.querySelector("#buy-button");
+  const lightCheckBtnText = $("#lightCheckBtn");
+
+  //Extra components for the card details
+  const cardPricePerCheck = $(".price-tag-bold");
+  const platformFee = $(".platform-fee");
+  const totalPerCheck = $(".total-per-check");
+  const totalAmountOfChecks = $(".amount-of-checks");
+  const scaleValue = $("#scale-value");
+  const totalPrice = $(".total-price");
+  const checkPrice = $(".check-price");
+  const checksPerSaving = $(".amount-of-checks-saving");
+  const amountSaved = $(".amount-saved");
+  const percentageSaved = $(".percentage-saved");
+
+  // totalPerCheck.text(
+  //   "$ " +
+  //     (parseFloat(cardPricePerCheck.text().slice(1)) +
+  //       parseFloat(platformFee.text().slice(1))).toFixed(2)
+  // );
   let mode = "light";
+  let monthly = true;
+
   if (getQueryStringValue(window.location.href) == "standard") {
     mode = "standard";
+    lightCheckBtnText.text("Standard Check");
+    $(".cost-per-check").text("$16.80");
   } else {
     mode = "light";
   }
@@ -23,18 +51,18 @@ $(document).ready(function () {
   const percentageStandardYearly = [15, 33, 38, 42, 45, 48];
 
   //Array of all monthly and yearly savings
-  const savingsLightMonthly = [4, 17.99, 34.98, 79.96, 171.91, 275.86];
+  const savingsLightMonthly = [4.0, 17.99, 34.98, 79.96, 171.91, 275.86];
   const savingsLightYearly = [56.73, 234.95, 445.55, 999.05, 2127.63, 3385.75];
-  const savingsStandardMonthly = [4, 35.99, 69.98, 159.96, 343.91, 551.86];
+  const savingsStandardMonthly = [4.0, 35.99, 69.98, 159.96, 343.91, 551.86];
   const savingsStandardYearly = [
     71.02, 472.19, 894.95, 2005.85, 4270.83, 6794.95,
   ];
 
-  //Buttons used to swap between slider modes and pricing
-  const monthlyButton = document.querySelector(".monthly-button");
-  const yearlyButton = document.querySelector(".yearly-button");
-  const packageSelector = document.querySelector(".package-selector");
-  const buyButton = document.querySelector("#buy-button");
+  //Array of platform fees per check
+  const platformFeesMonthlyLight = [7.29, 5.29, 4.29, 3.29, 2.69, 2.09];
+  const platformFeesMonthlyStandard = [19.19, 11.19, 9.19, 7.19, 5.99, 4.79];
+  const platformFeesYearlyLight = [6.56, 4.76, 3.86, 2.96, 2.42, 1.89];
+  const platformFeesYearlyStandard = [17.27, 10.07, 8.27, 6.47, 5.39, 4.32];
 
   //button attachment for ripple effect
   mdc.ripple.MDCRipple.attachTo(monthlyButton);
@@ -52,11 +80,13 @@ $(document).ready(function () {
 
   let isStandardHidden = true;
   let isLightHidden = false;
+  let currentIndex = 0;
 
   if (mode == "standard") {
     lightCheckList.hide();
     isStandardHidden = false;
     isLightHidden = true;
+    checkPrice.text("$39.99");
   } else {
     standardCheckList.hide();
   }
@@ -85,9 +115,29 @@ $(document).ready(function () {
       isStandardHidden = true;
       lightCheckList.slideDown(500);
       standardCheckList.slideUp(500);
+      $(".cost-per-check").text("$8.70");
+
+      if (monthly) {
+        setRangeValues(
+          valuesMonthly,
+          costsMonthlyLight,
+          platformFeesMonthlyLight,
+          savingsLightMonthly,
+          percentageLightMonthly
+        );
+      } else {
+        setRangeValues(
+          valuesYearly,
+          costsYearlyLight,
+          platformFeesYearlyLight,
+          savingsLightYearly,
+          percentageLightYearly
+        );
+      }
     } else {
       closeBottomSheet();
     }
+    checkPrice.text("$19.99");
     mode = "light";
   });
 
@@ -97,9 +147,29 @@ $(document).ready(function () {
       isLightHidden = true;
       standardCheckList.slideDown(500);
       lightCheckList.slideUp(500);
+      lightCheckBtnText.text("Standard Check");
+      $(".cost-per-check").text("$16.80");
+      if (monthly) {
+        setRangeValues(
+          valuesMonthly,
+          costsMonthlyStandard,
+          platformFeesMonthlyStandard,
+          savingsStandardMonthly,
+          percentageStandardMonthly
+        );
+      } else {
+        setRangeValues(
+          valuesYearly,
+          costsYearlyStandard,
+          platformFeesYearlyStandard,
+          savingsStandardYearly,
+          percentageStandardYearly
+        );
+      }
     } else {
       closeBottomSheet();
     }
+    checkPrice.text("$39.99");
     mode = "standard";
   });
 
@@ -114,35 +184,82 @@ $(document).ready(function () {
 
   //even listeners to swap between yearly and monthly pricing
   yearlyButton.addEventListener("click", () => {
+    monthly = false;
     title.html("How many checks will you run yearly?");
     if (mode === "standard") {
-      changePackageType(valuesYearly, costsYearlyStandard);
+      setRangeValues(
+        valuesYearly,
+        costsYearlyStandard,
+        platformFeesYearlyStandard,
+        savingsStandardYearly,
+        percentageStandardYearly
+      );
     } else {
-      changePackageType(valuesYearly, costsYearlyLight);
+      setRangeValues(
+        valuesYearly,
+        costsYearlyLight,
+        platformFeesYearlyLight,
+        savingsLightYearly,
+        percentageLightYearly
+      );
     }
     yearlyButton.classList.add("active");
     monthlyButton.classList.remove("active");
   });
 
   monthlyButton.addEventListener("click", () => {
+    monthly = true;
     if (mode === "standard") {
-      changePackageType(valuesMonthly, costsMonthlyStandard);
+      setRangeValues(
+        valuesMonthly,
+        costsMonthlyStandard,
+        platformFeesMonthlyStandard,
+        savingsStandardMonthly,
+        percentageStandardMonthly
+      );
     } else {
-      changePackageType(valuesMonthly, costsMonthlyLight);
+      setRangeValues(
+        valuesMonthly,
+        costsMonthlyLight,
+        platformFeesMonthlyLight,
+        savingsLightMonthly,
+        percentageLightMonthly
+      );
     }
     title.html("How many checks will you run monthly?");
     monthlyButton.classList.add("active");
     yearlyButton.classList.remove("active");
   });
 
-  let currentIndex = 0;
-
-  function changePackageType(valueSelected, cost) {
+  function setRangeValues(
+    valueSelected = valuesMonthly,
+    cost = mode == "standard" ? costsMonthlyStandard : costsMonthlyLight,
+    platformFees = mode == "standard"
+      ? platformFeesMonthlyStandard
+      : platformFeesMonthlyLight,
+    savings = mode == "standard" ? savingsStandardMonthly : savingsLightMonthly,
+    percentage = mode == "standard"
+      ? percentageStandardMonthly
+      : percentageLightMonthly
+  ) {
     const values = valueSelected;
-    $("#scale-value").html(
+
+    platformFee.text("$" + platformFees[currentIndex]);
+    cardPricePerCheck.text("$" + cost[currentIndex]);
+    scaleValue.html(
       valueSelected[currentIndex] +
         `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
     );
+    totalPerCheck.text("$ " + cost[currentIndex]);
+    totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
+    totalPrice.text(
+      "$" +
+        (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+        "/Year"
+    );
+    amountSaved.text("$" + savings[currentIndex].toFixed(2));
+    percentageSaved.text(percentage[currentIndex] + "%");
+
     let slider = $("#scale-slider").slider({
       min: valueSelected[0],
       max: valueSelected[valueSelected.length - 1],
@@ -158,13 +275,27 @@ $(document).ready(function () {
         currentIndex = valueSelected.findIndex(
           (x) => x == findNearest(includeLeft, includeRight, ui.value)
         );
-        $("#scale-value").html(
+
+        scaleValue.html(
           valueSelected[currentIndex] +
             `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
         );
+        totalPerCheck.text("$ " + cost[currentIndex]);
+        cardPricePerCheck.text("$" + cost[currentIndex]);
+        platformFee.text("$" + platformFees[currentIndex]);
+        totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
+        checksPerSaving.text(valueSelected[currentIndex]);
+        totalPrice.text(
+          "$" +
+            (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+            "/Year"
+        );
+        amountSaved.text("$" + savings[currentIndex].toFixed(2));
+        percentageSaved.text(percentage[currentIndex] + "%");
         return false;
       },
     });
+
     function findNearest(includeLeft, includeRight, value) {
       let nearest = null;
       let diff = null;
@@ -180,106 +311,126 @@ $(document).ready(function () {
           }
         }
       }
-
-      $("#scale-value").html(
-        nearest +
-          `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
-      );
       return nearest;
     }
   }
-
-  $(function () {
-    const values = valuesMonthly;
-    let slider = $("#scale-slider").slider({
-      min: 1,
-      max: 30,
-      slide: function (event, ui) {
-        let includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
-        let includeRight = event.keyCode != $.ui.keyCode.LEFT;
-        slider.slider(
-          "option",
-          "value",
-          findNearest(includeLeft, includeRight, ui.value)
-        );
-        currentIndex = valuesMonthly.findIndex(
-          (x) => x == findNearest(includeLeft, includeRight, ui.value)
-        );
-        return false;
-      },
-    });
-
-    function findNearest(includeLeft, includeRight, value) {
-      let nearest = null;
-      let diff = null;
-      for (let i = 0; i < values.length; i++) {
-        if (
-          (includeLeft && values[i] <= value) ||
-          (includeRight && values[i] >= value)
-        ) {
-          let newDiff = Math.abs(value - values[i]);
-          if (diff == null || newDiff < diff) {
-            nearest = values[i];
-            diff = newDiff;
-          }
-        }
-      }
-      $("#scale-value").html(
-        nearest +
-          `<span class="price-scale">($${
-            costsMonthlyLight[valuesMonthly.findIndex((x) => x == nearest)]
-          }/check)</span>`
-      );
-      return nearest;
-    }
-    $(".ui-slider-handle").append(`
+  setRangeValues();
+  $(".ui-slider-handle").append(`
   <svg class="left icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14 7l-5 5 5 5V7z"></path>
             </svg>
             <svg class="right icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M10 17l5-5-5-5v10z"></path>
             </svg>`);
-  });
 });
 
-/*
-function setRangeValues(
-    valueSelected = valuesMonthly,
-    cost = costsMonthlyLight,
-    initialValue = 1
-  ) {
-    $("#scale-value").html(initialValue);
-    const values = valueSelected;
-    let slider = $("#scale-slider").slider({
-      min: valueSelected[0],
-      max: valueSelected[valueSelected.length - 1],
-      slide: function (event, ui) {
-        let includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
-        let includeRight = event.keyCode != $.ui.keyCode.LEFT;
-        slider.slider(
-          "option",
-          "value",
-          findNearest(includeLeft, includeRight, ui.value)
-        );
-        return false;
-      },
-    });
-    function findNearest(includeLeft, includeRight, value) {
-      let nearest = null;
-      let diff = null;
-      for (let i = 0; i < values.length; i++) {
-        if (
-          (includeLeft && values[i] <= value) ||
-          (includeRight && values[i] >= value)
-        ) {
-          let newDiff = Math.abs(value - values[i]);
-          if (diff == null || newDiff < diff) {
-            nearest = values[i];
-            diff = newDiff;
-          }
-        }
-      }
-      $("#scale-value").html(nearest);
-      return nearest;
-    }
-  } */
+// function changePackageType(valueSelected, cost) {
+//   const values = valueSelected;
+//   $("#scale-value").html(
+//     valueSelected[currentIndex] +
+//       `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
+//   );
+//   cardPricePerCheck.text("$" + cost[currentIndex]);
+//   let slider = $("#scale-slider").slider({
+//     min: valueSelected[0],
+//     max: valueSelected[valueSelected.length - 1],
+//     value: valueSelected[currentIndex],
+//     slide: function (event, ui) {
+//       let includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
+//       let includeRight = event.keyCode != $.ui.keyCode.LEFT;
+//       slider.slider(
+//         "option",
+//         "value",
+//         findNearest(includeLeft, includeRight, ui.value)
+//       );
+//       currentIndex = valueSelected.findIndex(
+//         (x) => x == findNearest(includeLeft, includeRight, ui.value)
+//       );
+//       $("#scale-value").html(
+//         valueSelected[currentIndex] +
+//           `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
+//       );
+//       platformFee.text("$" + platformFeesMonthlyLight[currentIndex]);
+//       return false;
+//     },
+//   });
+//   function findNearest(includeLeft, includeRight, value) {
+//     let nearest = null;
+//     let diff = null;
+//     for (let i = 0; i < values.length; i++) {
+//       if (
+//         (includeLeft && values[i] <= value) ||
+//         (includeRight && values[i] >= value)
+//       ) {
+//         let newDiff = Math.abs(value - values[i]);
+//         if (diff == null || newDiff < diff) {
+//           nearest = values[i];
+//           diff = newDiff;
+//         }
+//       }
+//     }
+
+//     $("#scale-value").html(
+//       nearest +
+//         `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
+//     );
+//     cardPricePerCheck.text("$" + cost[currentIndex]);
+//     return nearest;
+//   }
+// }
+
+// $(function () {
+//   const values = valuesMonthly;
+//   let slider = $("#scale-slider").slider({
+//     min: 1,
+//     max: 30,
+//     slide: function (event, ui) {
+//       let includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
+//       let includeRight = event.keyCode != $.ui.keyCode.LEFT;
+//       slider.slider(
+//         "option",
+//         "value",
+//         findNearest(includeLeft, includeRight, ui.value)
+//       );
+//       currentIndex = valuesMonthly.findIndex(
+//         (x) => x == findNearest(includeLeft, includeRight, ui.value)
+//       );
+//       return false;
+//     },
+//   });
+
+//   function findNearest(includeLeft, includeRight, value) {
+//     let nearest = null;
+//     let diff = null;
+//     for (let i = 0; i < values.length; i++) {
+//       if (
+//         (includeLeft && values[i] <= value) ||
+//         (includeRight && values[i] >= value)
+//       ) {
+//         let newDiff = Math.abs(value - values[i]);
+//         if (diff == null || newDiff < diff) {
+//           nearest = values[i];
+//           diff = newDiff;
+//         }
+//       }
+//     }
+//     $("#scale-value").html(
+//       nearest +
+//         `<span class="price-scale">($${
+//           costsMonthlyLight[valuesMonthly.findIndex((x) => x == nearest)]
+//         }/check)</span>`
+//     );
+//     cardPricePerCheck.text(
+//       "$" + costsMonthlyLight[valuesMonthly.findIndex((x) => x == nearest)]
+//     );
+//     platformFee.text("$" + platformFeesMonthlyLight[currentIndex]);
+//     return nearest;
+//   }
+//   $(".ui-slider-handle").append(`
+// <svg class="left icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+//               <path d="M14 7l-5 5 5 5V7z"></path>
+//           </svg>
+//           <svg class="right icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+//               <path d="M10 17l5-5-5-5v10z"></path>
+//           </svg>`);
+// });
