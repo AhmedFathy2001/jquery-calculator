@@ -363,7 +363,6 @@ hr {
   }
   .mdc-button span {
     font-size: 12px;
-    white-space: nowrap;
   }
   .title {
     font-size: 17px;
@@ -380,5 +379,10 @@ hr {
     width: 100%;
     background-color: white;
     padding: 16px;
+  }
+}
+@media screen and (min-width: 320px) {
+  .mdc-button span {
+    white-space: nowrap;
   }
 }

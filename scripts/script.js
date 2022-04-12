@@ -141,7 +141,6 @@ $(document).ready(function () {
           savingsLightMonthly,
           percentageLightMonthly
         );
-        cycleType = "monthly";
       } else {
         setRangeValues(
           valuesYearly,
@@ -150,7 +149,6 @@ $(document).ready(function () {
           savingsLightYearly,
           percentageLightYearly
         );
-        cycleType = "annual";
       }
     } else {
       closeBottomSheet();
@@ -180,7 +178,6 @@ $(document).ready(function () {
           savingsStandardMonthly,
           percentageStandardMonthly
         );
-        cycleType = "monthly";
       } else {
         setRangeValues(
           valuesYearly,
@@ -189,7 +186,6 @@ $(document).ready(function () {
           savingsStandardYearly,
           percentageStandardYearly
         );
-        cycleType = "annual";
       }
     } else {
       closeBottomSheet();
@@ -211,6 +207,8 @@ $(document).ready(function () {
   //event listeners to swap between yearly and monthly pricing
   yearlyButton.addEventListener("click", () => {
     monthly = false;
+    cycleType = "annual";
+
     title.html("How many checks will you run yearly?");
     if (mode === "standard") {
       setRangeValues(
@@ -235,6 +233,8 @@ $(document).ready(function () {
 
   monthlyButton.addEventListener("click", () => {
     monthly = true;
+    cycleType = "monthly";
+
     if (mode === "standard") {
       setRangeValues(
         valuesMonthly,
@@ -288,6 +288,9 @@ $(document).ready(function () {
     );
     amountSaved.text("$" + savings[currentIndex].toFixed(2));
     percentageSaved.text(percentage[currentIndex] + "%");
+
+    amountOfChecks = valueSelected[currentIndex];
+    amount = (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2);
 
     let slider = $("#scale-slider").slider({
       min: valueSelected[0],
