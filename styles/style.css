@@ -40,7 +40,7 @@ body {
   height: 36px !important;
   background: #fff;
   margin-top: -10px;
-  margin-left: -12px;
+  margin-left: -0.95em !important;
   cursor: pointer !important;
 }
 .ui-state-focus,
@@ -405,10 +405,10 @@ hr {
   .icon {
     margin-top: -0.85px;
   }
-  .left{
+  .left {
     left: -6px;
   }
-  .right{
+  .right {
     right: -6px;
   }
 }
