@@ -279,12 +279,12 @@ $(document).ready(function () {
       valueSelected[currentIndex] +
         `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
     );
-    totalPerCheck.text("$ " + cost[currentIndex]);
+    totalPerCheck.text("$" + cost[currentIndex]);
     totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
     totalPrice.text(
       "$" +
         (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
-        "/Year"
+        `${monthly ? " /Month" : " /Year"}`
     );
     amountSaved.text("$" + savings[currentIndex].toFixed(2));
     percentageSaved.text(percentage[currentIndex] + "%");
@@ -313,7 +313,7 @@ $(document).ready(function () {
           valueSelected[currentIndex] +
             `<span class="price-scale">($${cost[currentIndex]}/check)</span>`
         );
-        totalPerCheck.text("$ " + cost[currentIndex]);
+        totalPerCheck.text("$" + cost[currentIndex]);
         cardPricePerCheck.text("$" + cost[currentIndex]);
         platformFee.text("$" + platformFees[currentIndex]);
         totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
@@ -321,7 +321,7 @@ $(document).ready(function () {
         totalPrice.text(
           "$" +
             (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
-            "/Year"
+            `${monthly ? " /Month" : " /Year"}`
         );
         amountSaved.text("$" + savings[currentIndex].toFixed(2));
         percentageSaved.text(percentage[currentIndex] + "%");
