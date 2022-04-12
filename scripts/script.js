@@ -23,10 +23,12 @@ $(document).ready(function () {
   const percentageStandardYearly = [15, 33, 38, 42, 45, 48];
 
   //Array of all monthly and yearly savings
-  const savingsLightMonthly = [];
-  const savingsLightYearly = [];
-  const savingsStandardMonthly = [];
-  const savingsStandardYearly = [];
+  const savingsLightMonthly = [4, 17.99, 34.98, 79.96, 171.91, 275.86];
+  const savingsLightYearly = [56.73, 234.95, 445.55, 999.05, 2127.63, 3385.75];
+  const savingsStandardMonthly = [4, 35.99, 69.98, 159.96, 343.91, 551.86];
+  const savingsStandardYearly = [
+    71.02, 472.19, 894.95, 2005.85, 4270.83, 6794.95,
+  ];
 
   //Buttons used to swap between slider modes and pricing
   const monthlyButton = document.querySelector(".monthly-button");
@@ -47,12 +49,13 @@ $(document).ready(function () {
   const standardCheckList = $("#standard-check-list");
   const backdrop = $(".bottom-sheet-backdrop");
   const bottomSheet = $(".bottom-sheet");
+
   let isStandardHidden = true;
   let isLightHidden = false;
 
   if (mode == "standard") {
     lightCheckList.hide();
-    isStandardHidden = false
+    isStandardHidden = false;
     isLightHidden = true;
   } else {
     standardCheckList.hide();
@@ -85,7 +88,7 @@ $(document).ready(function () {
     } else {
       closeBottomSheet();
     }
-    mode = light;
+    mode = "light";
   });
 
   standardCheck.click(() => {
@@ -97,6 +100,7 @@ $(document).ready(function () {
     } else {
       closeBottomSheet();
     }
+    mode = "standard";
   });
 
   const title = $("#title");
@@ -119,6 +123,7 @@ $(document).ready(function () {
     yearlyButton.classList.add("active");
     monthlyButton.classList.remove("active");
   });
+
   monthlyButton.addEventListener("click", () => {
     if (mode === "standard") {
       changePackageType(valuesMonthly, costsMonthlyStandard);
@@ -131,6 +136,7 @@ $(document).ready(function () {
   });
 
   let currentIndex = 0;
+
   function changePackageType(valueSelected, cost) {
     const values = valueSelected;
     $("#scale-value").html(
@@ -188,9 +194,6 @@ $(document).ready(function () {
     let slider = $("#scale-slider").slider({
       min: 1,
       max: 30,
-      step: 0.0001,
-      range: false,
-      animate: "fast",
       slide: function (event, ui) {
         let includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
         let includeRight = event.keyCode != $.ui.keyCode.LEFT;
@@ -223,7 +226,9 @@ $(document).ready(function () {
       }
       $("#scale-value").html(
         nearest +
-          `<span class="price-scale">($${costsMonthlyLight[currentIndex]}/check)</span>`
+          `<span class="price-scale">($${
+            costsMonthlyLight[valuesMonthly.findIndex((x) => x == nearest)]
+          }/check)</span>`
       );
       return nearest;
     }
