@@ -14,165 +14,167 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body class="body">
-    <div class="container text-center">
-        <h2 class="title" id="title">How many checks will you run monthly?</h2>
-        <div id="scale-value" class="scale-value">1<span class="price-scale">($15.99/check)</span></div>
-        <div id="scale-slider" class="slider"></div>
-    </div>
-    <div class="card">
-        <div class="card-content">
-            <p><span class="price-tag-bold">$15.99</span><span>/check</span></p>
-            <div class="button">
-                <button class="mdc-button monthly-button active">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Monthly</span>
-                </button>
-                <button class="mdc-button yearly-button">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Yearly (Save 10%)</span>
-                </button>
-            </div>
-            <div class="button">
-                <button class="mdc-button package-selector">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label"
-                        style="display: flex; justify-content: space-between; width:100%"><span id="lightCheckBtn">Light
-                            Check</span> <svg class="" style="width: 25px;" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M7 10l5 5 5-5z"></path>
-                        </svg></span>
-                </button>
-            </div>
+<body>
+    <div class="main">
+        <div class="container text-center">
+            <h2 class="title" id="title">How many checks will you run monthly?</h2>
+            <div id="scale-value" class="scale-value">1<span class="price-scale">($15.99/check)</span></div>
+            <div id="scale-slider" class="slider"></div>
         </div>
-        <!-- <hr style="margin-top: 2rem;"> -->
-        <div class="card-content">
-            <hr>
-
-            <div class="price-details"><span>Our cost per check</span> <span class="cost-per-check">$8.70</span></div>
-            <div class="price-details"><span>Platform fee per check</span> <span class="platform-fee">$7.29</span></div>
-            <div class="price-details"><span>Total per check</span> <span class="total-per-check">$13.46</span></div>
-            <div class="price-details"><span>Checks per year</span><span class="amount-of-checks">x 36</span></div>
-            <hr style="margin: 8px 0;">
-            <div class="price-details total"><span>Total</span> <span class="total-price">$484.69 /Year</span></div>
-            <div class="savings-box">
-                <div class="savings-content">
-                    <div class="text-container">
-                        <p>Save <span class="percentage-saved">21%</span>. Avg market price of this check is: <span
-                                class="check-price">$19.99</span></p>
-                        <p class="highlighted-text">You save <span class="amount-saved">$4.00</span> for <span
-                                class="amount-of-checks-saving">1</span> check(s)</p>
-                    </div>
-                    <div class="img"><img src="./SavingsIcon.png" alt="savings-img"></div>
+        <div class="card">
+            <div class="card-content">
+                <p><span class="price-tag-bold">$15.99</span><span>/check</span></p>
+                <div class="button">
+                    <button class="mdc-button monthly-button active">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Monthly</span>
+                    </button>
+                    <button class="mdc-button yearly-button">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Yearly (Save 10%)</span>
+                    </button>
+                </div>
+                <div class="button">
+                    <button class="mdc-button package-selector">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label bottom-sheet-opener"><span id="lightCheckBtn">Light
+                                Check</span> <svg class="" style="width: 25px;" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 10l5 5 5-5z"></path>
+                            </svg></span>
+                    </button>
                 </div>
             </div>
-        </div>
-        <div class="buy">
-            <button class="mdc-button mdc-button--raised" id="buy-button">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Buy Now</span>
-            </button>
-            <p class="text-center">You cancel anytime!</p>
-        </div>
-    </div>
-    <div class="bottom-sheet-backdrop" style="display: none;"></div>
-    <div class="bottom-sheet" style="display: none;">
-        <div class="light-check">
-            <div class="bottom-sheet-button" id="light-check"><span>Light Check</span>
-                <span><svg class="MuiSvgIcon-root-374" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
-                    </svg></span>
-            </div>
-            <ul class="bottom-sheet-list" id="light-check-list">
-                <li>
-                    <svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    SSN Trace
-                </li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Addresses, Names & DOB Verification</li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    National Criminal Database Check</li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Sex Offender Registry Search</li>
-            </ul>
-        </div>
-        <hr>
-        <div class="standard-check">
-            <div class="bottom-sheet-button" id="standard-check"><span>Standard Check</span>
-                <span><svg class="MuiSvgIcon-root-374" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
-                    </svg></span>
-            </div>
-            <ul class="bottom-sheet-list" id="standard-check-list">
-                <li>
-                    <svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    SSN Trace
-                </li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Addresses, Names & DOB Verification</li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    National Criminal Database Check</li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Sex Offender Registry Search</li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Global Watchlist
-                </li>
-                <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                        </path>
-                    </svg>
-                    Unlimited County Criminal Search - 7 years look back
-                </li>
-            </ul>
-        </div>
-    </div>
+            <div class="card-content">
+                <hr>
 
+                <div class="price-details"><span>Our cost per check</span> <span class="cost-per-check">$8.70</span>
+                </div>
+                <div class="price-details"><span>Platform fee per check</span> <span class="platform-fee">$7.29</span>
+                </div>
+                <div class="price-details"><span>Total per check</span> <span class="total-per-check">$13.46</span>
+                </div>
+                <div class="price-details"><span>Checks per year</span><span class="amount-of-checks">x 36</span></div>
+                <hr style="margin: 8px 0;">
+                <div class="price-details total"><span>Total</span> <span class="total-price">$484.69 /Year</span></div>
+                <div class="savings-box">
+                    <div class="savings-content">
+                        <div class="text-container">
+                            <p>Save <span class="percentage-saved">21%</span>. Avg market price of this check is: <span
+                                    class="check-price">$19.99</span></p>
+                            <p class="highlighted-text">You save <span class="amount-saved">$4.00</span> for <span
+                                    class="amount-of-checks-saving">1</span> check(s)</p>
+                        </div>
+                        <div class="img"><img src="./SavingsIcon.png" alt="savings-img"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="buy">
+                <button class="mdc-button mdc-button--raised" id="buy-button">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Buy Now</span>
+                </button>
+                <p class="text-center">You cancel anytime!</p>
+            </div>
+        </div>
+        <div class="bottom-sheet-backdrop" style="display: none;"></div>
+        <div class="bottom-sheet" style="display: none;">
+            <div class="light-check">
+                <div class="bottom-sheet-button" id="light-check"><span>Light Check</span>
+                    <span><svg class="MuiSvgIcon-root-374" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                        </svg></span>
+                </div>
+                <ul class="bottom-sheet-list" id="light-check-list">
+                    <li>
+                        <svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        SSN Trace
+                    </li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Addresses, Names & DOB Verification</li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        National Criminal Database Check</li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Sex Offender Registry Search</li>
+                </ul>
+            </div>
+            <div class="standard-check">
+                <div class="bottom-sheet-button" id="standard-check"><span>Standard Check</span>
+                    <span><svg class="MuiSvgIcon-root-374" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                        </svg></span>
+                </div>
+                <ul class="bottom-sheet-list" id="standard-check-list">
+                    <li>
+                        <svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        SSN Trace
+                    </li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Addresses, Names & DOB Verification</li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        National Criminal Database Check</li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Sex Offender Registry Search</li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Global Watchlist
+                    </li>
+                    <li><svg class=" MuiSvgIcon-root-374 jss91 MuiSvgIcon-colorPrimary-375" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                            </path>
+                        </svg>
+                        Unlimited County Criminal Search - 7 years look back
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 
 
 

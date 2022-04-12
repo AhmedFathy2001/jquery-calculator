@@ -1,7 +1,11 @@
 * {
   box-sizing: border-box;
 }
-.body {
+body {
+  margin: 0;
+  padding: 0;
+}
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,6 +13,10 @@
   min-height: 100vh;
   padding-bottom: 30px;
   font-family: Segoe UI, Open Sans, "Helvetica Neue", Arial, sans-serif;
+}
+.container {
+  max-width: 650px;
+  width: calc(100% - 50px);
 }
 
 .title {
@@ -56,7 +64,7 @@
     rgba(50, 95, 235, 1) 89%
   );
   cursor: pointer;
-  width: 612px;
+  width: 100%;
   margin: 0 auto;
   height: 10px;
   background: #fff;
@@ -156,14 +164,14 @@
   display: flex;
   width: 100%;
 }
-.active {
+.mdc-button.active {
   background-color: #c9daf8;
 }
 .mdc-button.monthly-button.active,
 .mdc-button.monthly-button.mdc-button__ripple.active:hover,
 .mdc-button.yearly-button.active,
 .mdc-button.yearly-button.mdc-button__ripple.active,
-.active:hover {
+.mdc-button.active:hover {
   background-color: #c9daf8 !important;
 }
 .mdc-button__ripple::after,
@@ -293,6 +301,7 @@ hr {
   left: 0;
   right: 0;
   bottom: 0;
+  position: fixed;
   display: flex;
   z-index: 4;
   position: fixed;
@@ -320,4 +329,56 @@ hr {
   background-color: #fff;
   box-shadow: 0px 8px 10px -5px rgb(0 0 0 / 20%),
     0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%);
+}
+.bottom-sheet-opener {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.bottom-sheet-button {
+  padding-top: 10px;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.bottom-sheet-button svg {
+  vertical-align: middle;
+  transition: 0.3s all;
+}
+.bottom-sheet-button.active svg {
+  transform: rotate(180deg);
+}
+.light-check {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    width: 100%;
+    box-shadow: none;
+  }
+  .savings-box {
+    padding: 0px;
+  }
+  .mdc-button span {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .title {
+    font-size: 17px;
+  }
+  .scale-value {
+    font-size: 24px;
+  }
+  .price-scale {
+    font-size: 14px;
+  }
+  .buy {
+    /* position: fixed;
+    bottom: 0; */
+    width: 100%;
+    background-color: white;
+    padding: 16px;
+  }
 }
