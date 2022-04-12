@@ -380,6 +380,10 @@ hr {
     background-color: white;
     padding: 16px;
   }
+  .container {
+    max-width: calc(100% - 70px);
+  }
+
 }
 @media screen and (min-width: 320px) {
   .mdc-button span {
