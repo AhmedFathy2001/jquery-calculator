@@ -47,11 +47,13 @@ $(document).ready(function () {
   const standardCheckList = $("#standard-check-list");
   const backdrop = $(".bottom-sheet-backdrop");
   const bottomSheet = $(".bottom-sheet");
-  let isStandardHidden = false;
-  let isLightHidden = true;
+  let isStandardHidden = true;
+  let isLightHidden = false;
 
   if (mode == "standard") {
     lightCheckList.hide();
+    isStandardHidden = false
+    isLightHidden = true;
   } else {
     standardCheckList.hide();
   }
