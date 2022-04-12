@@ -116,6 +116,7 @@ $(document).ready(function () {
       lightCheckList.slideDown(500);
       standardCheckList.slideUp(500);
       $(".cost-per-check").text("$8.70");
+      lightCheckBtnText.text("Light Check");
 
       if (monthly) {
         setRangeValues(
