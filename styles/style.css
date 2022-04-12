@@ -7,13 +7,14 @@ body {
 }
 .main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  flex-direction: column;
+  /* remove the next line if its not the last element in the page */
   padding-bottom: 30px;
   font-family: Segoe UI, Open Sans, "Helvetica Neue", Arial, sans-serif;
 }
+
 .container {
   max-width: 740px;
   width: calc(100% - 50px);
