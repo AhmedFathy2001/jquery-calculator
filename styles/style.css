@@ -1,0 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-bottom: 30px;
+  font-family: Segoe UI, Open Sans, "Helvetica Neue", Arial, sans-serif;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.scale-value {
+  font-size: 36px;
+  margin-bottom: 2rem;
+  background: linear-gradient(180deg, #5db595 19.79%, #3f71d5 100%);
+  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ui-slider-handle {
+  border-radius: 50%;
+  border: 3px solid rgb(92, 177, 153) !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #fff;
+  margin-top: -10px;
+  margin-left: -12px;
+  cursor: pointer !important;
+}
+.ui-state-focus,
+.ui-state-hover {
+  border: 3px solid rgb(92, 177, 153) !important;
+  outline: 0;
+}
+.ui-state-active {
+  background: #fff !important;
+}
+.text-center {
+  text-align: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background: linear-gradient(
+    90deg,
+    rgba(52, 191, 138, 1) 33%,
+    rgba(50, 95, 235, 1) 89%
+  );
+  cursor: pointer;
+  width: 612px;
+  margin: 0 auto;
+  height: 10px;
+  background: #fff;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+#scale-slider {
+  background: linear-gradient(
+    90deg,
+    rgba(52, 191, 138, 1) 33%,
+    rgba(50, 95, 235, 1) 89%
+  );
+
+  border: none;
+}
+
+.right {
+  color: #3d6ed8;
+  fill: #3d6ed8;
+  right: -4px;
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+}
+.left {
+  left: -4px;
+  color: #5cb199;
+  fill: #5cb199;
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+}
+.icon {
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+  margin-top: 3.5px;
+  /* margin-right: 3px; */
+}
+.price-scale {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+.mdc-button {
+  color: #000 !important;
+  font-weight: 400 !important;
+
+  width: 100%;
+  text-transform: capitalize;
+  justify-content: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  padding-left: 16px;
+  padding-right: 32px;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  font-weight: 500;
+  line-height: 1.75;
+  margin: 0;
+}
+.mdc-button.monthly-button,
+.mdc-button.monthly-button .mdc-button__ripple::after,
+.mdc-button.monthly-button .mdc-button__ripple::before {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+  border-right: none;
+}
+
+.mdc-button.yearly-button,
+.mdc-button.yearly-button .mdc-button__ripple::after,
+.mdc-button.yearly-button .mdc-button__ripple::before {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+}
+.mdc-button.package-selector,
+.mdc-button.package-selector .mdc-button__ripple::after,
+.mdc-button.package-selector .mdc-button__ripple::before {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.mdc-button.package-selector {
+  width: 100%;
+}
+.button {
+  display: flex;
+  width: 100%;
+}
+.active {
+  background-color: #c9daf8;
+}
+.mdc-button.monthly-button.active,
+.mdc-button.monthly-button.mdc-button__ripple.active:hover,
+.mdc-button.yearly-button.active,
+.mdc-button.yearly-button.mdc-button__ripple.active,
+.active:hover {
+  background-color: #c9daf8 !important;
+}
+.mdc-button__ripple::after,
+.mdc-button__ripple::before {
+  background-color: #000 !important;
+}
+
+.card {
+  margin-top: 1.5rem;
+  max-width: 682px;
+  width: calc(100% - 32px);
+  box-shadow: 0px 6px 6px -3px rgb(0 0 0 / 20%),
+    0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+}
+
+.price-tag-bold {
+  font-size: 1.5rem;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.price-details {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  margin: 0;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.total-per-check {
+  color: #61bc8e;
+}
+
+.savings-box {
+  padding-left: 64px;
+  padding-right: 64px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+}
+.savings-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+.savings-box p {
+  font-size: 1.1rem;
+  width: fit-content;
+}
+.highlighted-text {
+  padding: 0px 8px;
+  background-color: #fdf2d5;
+}
+
+.total {
+  margin-bottom: 0.5rem;
+}
+
+.mdc-button--raised {
+  background-color: #34bf8a !important;
+  color: white !important;
+  transition: 0.3s background ease-in-out;
+}
+.mdc-button--raised:hover {
+  background-color: rgb(36, 133, 96) !important;
+}
+.mdc-button--raised .mdc-button__label {
+  width: 100%;
+}
+
+.buy {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bottom-sheet-list {
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.bottom-sheet-list li {
+  padding: 0.25rem 0;
+}
+
+.bottom-sheet-list svg {
+  margin-bottom: -7.5px;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  user-select: none;
+  max-height: 1em;
+  margin-right: 0.25em;
+  fill: #325feb;
+}
+
+.bottom-sheet-button {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-bottom: 5px;
+}
+.bottom-sheet-button svg {
+  width: 25px;
+}
+
+.bottom-sheet-backdrop {
+  opacity: 1;
+  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 4;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-sheet {
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: 1 0 auto;
+  height: auto;
+  max-height: 100%;
+  display: flex;
+  outline: 0;
+  z-index: 5;
+  position: fixed;
+  overflow-y: auto;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+  box-shadow: 0px 8px 10px -5px rgb(0 0 0 / 20%),
+    0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%);
+}
