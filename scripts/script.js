@@ -84,7 +84,7 @@ $(document).ready(function () {
   let isStandardHidden = true;
   let isLightHidden = false;
 
-  let currentIndex = 0;
+  let currentIndex = 1;
 
   //checks if the mode is standard or light after fetching the query params
   if (mode == "standard") {

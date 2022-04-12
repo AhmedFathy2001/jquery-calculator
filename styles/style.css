@@ -106,8 +106,6 @@ body {
   flex-shrink: 0;
   user-select: none;
   margin-top: 2px;
-  /* margin-right: 0.75px; */
-  /* margin-right: 3px; */
 }
 .price-scale {
   font-size: 1rem;
@@ -352,14 +350,21 @@ hr {
 }
 
 .price-details {
-  margin-bottom: 14px;
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 768px) {
   .card {
+    margin-top: 0;
     max-width: 100%;
     width: 100%;
     box-shadow: none;
+  }
+  .card-content {
+    padding-top: 0px;
+  }
+  .card-content .price-tag {
+    margin-top: 0;
   }
   .savings-box {
     padding: 0px;
@@ -377,14 +382,34 @@ hr {
     font-size: 14px;
   }
   .buy {
-    /* position: fixed;
-    bottom: 0; */
     width: 100%;
     background-color: white;
     padding: 16px;
+
+    /*uncomment the next two lines to make the buy button fixed to the bottom of the screen when the screen is smaller than 768px
+    position: fixed;
+    bottom: 0; */
   }
   .container {
     max-width: calc(100% - 70px);
+  }
+  .savings-box p {
+    font-size: 14px !important;
+  }
+  .ui-slider-handle {
+    width: 30px !important;
+    height: 30px !important;
+    margin-top: -5px;
+    margin-left: -12px;
+  }
+  .icon {
+    margin-top: -0.85px;
+  }
+  .left{
+    left: -6px;
+  }
+  .right{
+    right: -6px;
   }
 }
 @media screen and (min-width: 320px) {
