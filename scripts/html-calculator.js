@@ -1,4 +1,4 @@
-$(document).ready(function () {
+jQuery(document).ready(function ($) {
   //Buttons used to swap between slider modes and pricing
   const monthlyButton = document.querySelector(".monthly-button");
   const yearlyButton = document.querySelector(".yearly-button");
@@ -66,6 +66,12 @@ $(document).ready(function () {
   const platformFeesYearlyLight = [6.56, 4.76, 3.86, 2.96, 2.42, 1.89];
   const platformFeesYearlyStandard = [17.27, 10.07, 8.27, 6.47, 5.39, 4.32];
 
+  //erfan edit
+  //button attachment for ripple effect
+  //mdc.ripple.MDCRipple.attachTo(monthlyButton);
+  //mdc.ripple.MDCRipple.attachTo(yearlyButton);
+  //mdc.ripple.MDCRipple.attachTo(packageSelector);
+  //mdc.ripple.MDCRipple.attachTo(buyButton);
 
   //bottom sheet buttons and lists
   const lightCheck = $("#light-check");
@@ -110,7 +116,7 @@ $(document).ready(function () {
   });
 
   buyButton.addEventListener("click", () => {
-    window.location.href = `https://www.google.com?amount=${amount}&billing_cycle=${cycleType}&checks_per_cycle=${amountOfChecks}&report_type=${mode}&sku=${amountOfChecks}_${mode}_${cycleType}`;
+    window.location.href = `https://karmacheck.wpengine.com/pricing/contact-info/?amount=${amount}&billing_cycle=${cycleType}&checks_per_cycle=${amountOfChecks}&report_type=${mode}&sku=${amountOfChecks}_${mode}_${cycleType}`;
   });
 
   //expands the elements under each category if its not
@@ -276,13 +282,22 @@ $(document).ready(function () {
     );
     totalPerCheck.text("$" + cost[currentIndex]);
     totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
+
+    //erfan edit
+    //totalPrice.text(
+    // "$" +
+    //    (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+    //    `${monthly ? " /Month" : " /Year"}`
+    //);
     totalPrice.text(
       "$" +
-        (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+        (cost[currentIndex] * valueSelected[currentIndex]).toLocaleString() +
         `${monthly ? " /Month" : " /Year"}`
     );
+
     amountSaved.text("$" + savings[currentIndex].toFixed(2));
     percentageSaved.text(percentage[currentIndex] + "%");
+    checksPerSaving.text(valueSelected[currentIndex]);
 
     amountOfChecks = valueSelected[currentIndex];
     amount = (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2);
@@ -313,15 +328,26 @@ $(document).ready(function () {
         platformFee.text("$" + platformFees[currentIndex]);
         totalAmountOfChecks.text("x " + valueSelected[currentIndex]);
         checksPerSaving.text(valueSelected[currentIndex]);
+
+        //erfan edit
+        //totalPrice.text(
+        //  "$" +
+        //    (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+        //    `${monthly ? " /Month" : " /Year"}`
+        //);
         totalPrice.text(
           "$" +
-            (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2) +
+            (
+              cost[currentIndex] * valueSelected[currentIndex]
+            ).toLocaleString() +
             `${monthly ? " /Month" : " /Year"}`
         );
+
         amountSaved.text("$" + savings[currentIndex].toFixed(2));
         percentageSaved.text(percentage[currentIndex] + "%");
         amountOfChecks = valueSelected[currentIndex];
         amount = (cost[currentIndex] * valueSelected[currentIndex]).toFixed(2);
+
         return false;
       },
     });
